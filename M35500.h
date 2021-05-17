@@ -1,3 +1,6 @@
+//Created by Pablo Abraham 2021
+//License Apache 2.0
+
 #ifndef M35500_H
 #define M35500_H
 
@@ -7,6 +10,64 @@ class M35500
 {
 public:
   using Pin = unsigned int;
+
+  //Number of Digits
+  //2 Bits (Bit 2 and 3)
+  enum class NumOfDigits
+  {
+    Seven = 0b00000000, // 7
+    Eight = 0b00000100, // 8
+    Nine = 0b00001000, // 9
+    Ten = 0b00001100 // 10
+  };
+  
+  //2 Bits (Bit 1 and 2)
+  //Higher the Number brighter of the display
+  enum class DisplayDuty
+  {
+    Fifthteen =  0b00000110, // 15/16
+    Fourteen = 0b00000100, // 14/16
+    Six =      0b00000010, // 6/16
+    Five =     0b00000000 // 5/16
+  };
+  
+  //1 Bit (Bit 0)
+  enum class DisplayStatus
+  {
+    On =  0b00000001, // On
+    Off = 0b00000000  // Off
+  };
+
+  //4 Bits (Bit 0 - 3)
+  enum class DigitStartPin
+  {
+    D17 =  0b00000000, // D17
+    D16 =  0b00000001, // D16
+    D15 =  0b00000010, // D15
+    D14 =  0b00000011, // D14
+    D13 =  0b00000100, // D13
+    D12 =  0b00000101, // D12
+    D11 =  0b00000110, // D11
+    D10 =  0b00000111, // D10
+    D9 =   0b00001000, // D9
+    D8 =   0b00001001, // D8
+    D7 =   0b00001010, // D7
+  };
+
+    
+  enum class PortSelection
+  {
+    P3_P0 =  0b00000000, // P3-P0
+    P7_P4 =  0b00010000, // P7-P4
+  };
+
+  //Number of Segments
+  //2 Bits (Bit 0 and 1)
+  enum class Segments
+  {
+    SexteenOrLess = 0b00000000,
+    SeventeenOrMore = 0b00000001
+  };
 
   /**
   * Constructor for the M35500 class
@@ -26,64 +87,6 @@ public:
   * Reset the M35500
   */
   void reset();
-  //Number of Segments
-  //2 Bits (Bit 0 and 1)
-  enum class Segments
-    {
-        SexteenOrLess = 0b00000000,
-        SeventeenOrMore = 0b00000001
-    };
-
-  //Number of Digits
-  //2 Bits (Bit 2 and 3)
-  enum class NumOfDigits
-    {
-        Seven = 0b00000000, // 7
-        Eight = 0b00000100, // 8
-        Nine = 0b00001000, // 9
-        Ten = 0b00001100 // 10
-    };
-
-  //2 Bits (Bit 1 and 2)
-  //Higher the Number brighter of the display
-  enum class DisplayDuty
-    {
-        Fifthteen =  0b00000110, // 15/16
-        Fourteen = 0b00000100, // 14/16
-        Six =      0b00000010, // 6/16
-        Five =     0b00000000 // 5/16
-    };
-
-  //1 Bit (Bit 0)
-  enum class DisplayStatus
-    {
-        On =  0b00000001, // On
-        Off = 0b00000000  // Off
-    };
-
-  //4 Bits (Bit 0 - 3)
-  enum class DigitStartPin
-    {
-        D17 =  0b00000000, // D17
-        D16 =  0b00000001, // D16
-        D15 =  0b00000010, // D15
-        D14 =  0b00000011, // D14
-        D13 =  0b00000100, // D13
-        D12 =  0b00000101, // D12
-        D11 =  0b00000110, // D11
-        D10 =  0b00000111, // D10
-        D9 =   0b00001000, // D9
-        D8 =   0b00001001, // D8
-        D7 =   0b00001010, // D7
-    };
-
-    
-    enum class PortSelection
-    {
-        P3_P0 =  0b00000000, // P3-P0
-        P7_P4 =  0b00010000, // P7-P4
-        
-    };
 
   /**
   * Command 0 - Display Data Settings M35500
